@@ -11,4 +11,4 @@ To obtain a credentials file for the API go to the [Google API manager](https://
 Create a google sheet and name it `PyTrack`. Once created share it with the email contained in the JSON file labeled as `client_email`.
 
 ### Placing the script in the startup folder
-On MS Windows open a run window and type `shell:startup` to access your startup folder. In here place the [source file](PyTrack.py), the [batch file])(PyTrack.bat) and your personal credentials file renamed to `client_credentials.json`.
+On MS Windows open a run window and type `shell:startup` to access your startup folder. In here place the [source file](PyTrack.py), the [batch file](PyTrack.bat) and your personal credentials file renamed to `client_credentials.json`.
