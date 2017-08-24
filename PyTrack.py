@@ -11,18 +11,11 @@ def get_last_row(sheet):
 			return i
 	return -1
 
-def get_ip_address():
-	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	s.connect(("8.8.8.8", 80))
-	ip_address = s.getsockname()[0]
-	s.close()
-	return ip_address
-
-def track(ip_address, sheet, row):
-	request_json = requests.get('http://ip-api.com/json/' + ip_address).json()
+def track(sheet, row):
+	request_json = requests.get('http://ip-api.com/json/').json()
 	sheet.update_cell(row, 1, str(row_index - 1))
 	sheet.update_cell(row, 2, str(datetime.datetime.now()))
-	sheet.update_cell(row, 3, ip_address)
+	sheet.update_cell(row, 3, request_json['query'])
 	sheet.update_cell(row, 4, request_json['isp'])
 	sheet.update_cell(row, 5, getpass.getuser())
 	sheet.update_cell(row, 6, socket.gethostname())
@@ -43,5 +36,4 @@ if __name__ == "__main__":
 	if row_index == -1:
 		print("Error: Couldn't find last row in sheet.")
 		exit()
-	ip_address = get_ip_address()
-	track(ip_address, sheet, row_index)
+	track(sheet, row_index)
